@@ -1,0 +1,41 @@
+{
+    "name": "prayer-times",
+    "version": "1.0.0",
+    "description": "Prayer times is an extension for google chrome that shows the salat timings for the current and next day of your timezone.",
+    "main": "src/bootstrap.js",
+    "scripts": {
+        "start": "npm run build",
+        "build": "webpack -d && cp src/index.html dist/index.html && cp -a src/styles dist && webpack-dev-server --content-base src/  --inline --hot --progress --color",
+        "build:prod": "webpack -p && cp src/index.html dist/index.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ssi-anik/prayer-times.git"
+    },
+    "keywords": [
+        "prayer-times",
+        "salat-timings"
+    ],
+    "author": "Syed Sirajul Islam Anik",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ssi-anik/prayer-times/issues"
+    },
+    "homepage": "https://github.com/ssi-anik/prayer-times#readme",
+    "dependencies": {
+        "jquery": "^3.2.1",
+        "moment": "^2.18.1",
+        "moment-timezone": "^0.5.13",
+        "react": "^15.4.2",
+        "react-dom": "^15.4.2"
+    },
+    "devDependencies": {
+        "babel-core": "^6.23.1",
+        "babel-loader": "^6.2.10",
+        "babel-preset-es2015": "^6.22.0",
+        "babel-preset-react": "^6.22.0",
+        "babel-preset-stage-2": "^6.22.0",
+        "webpack": "^2.2.1",
+        "webpack-dev-server": "^2.3.0"
+    }
+}

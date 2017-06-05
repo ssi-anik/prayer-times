@@ -4,25 +4,28 @@ import moment from "moment-timezone";
 class Result extends Component {
     constructor () {
         super();
-        let user_timezone = this.getUserTimeZone();
-        let timezones = moment.tz.names();
-        this.state = {
-            user_timezone,
-            timezones
-        };
     }
-    
-    getUserTimeZone () {
-        return moment.tz.guess();
+
+    formatToDateFromTimestamp (timestamp) {
+        return moment.unix(timestamp).format('LL');
     }
-    
+
+    componentWillReceiveProps (nextProps) {
+        console.log(nextProps);
+        if ( nextProps.latitude !== -9999 || nextProps.longitude !== -9999 ) {
+
+        }
+    }
+
     render () {
+        let today = this.props.today;
+        let tomorrow = this.props.tomorrow;
         return (
-            <div className="container-fluid">
-                <div>{this.props.today}</div>
-                <div>{moment.unix(this.props.today).format('LL')}</div>
-                <div>{this.props.tomorrow}</div>
-                <div>{moment.unix(this.props.tomorrow).format('LL')}</div>
+            <div className = "container-fluid">
+                <div>{today}</div>
+                <div>{this.formatToDateFromTimestamp(today)}</div>
+                <div>{tomorrow}</div>
+                <div>{this.formatToDateFromTimestamp(tomorrow)}</div>
             </div>
         );
     }

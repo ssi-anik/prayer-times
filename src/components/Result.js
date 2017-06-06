@@ -11,9 +11,8 @@ class Result extends Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        console.log(nextProps);
         if ( nextProps.latitude !== -9999 || nextProps.longitude !== -9999 ) {
-
+            
         }
     }
 

@@ -13,6 +13,10 @@ class Table extends Component {
                 <table className = "table table-bordered table-responsive">
                     <caption>{this.props.caption}</caption>
                     <tbody>
+                    <tr>
+                        <td>Epoch & Salat</td>
+                        <td>Time</td>
+                    </tr>
                     {
                         Object.keys(this.props.timings).map((key, index) => {
                             return <tr key = {key} className = {index % 2 == 0 ? 'success' : 'info'}>

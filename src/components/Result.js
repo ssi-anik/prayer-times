@@ -21,12 +21,12 @@ class Result extends Component {
             <div className="container-fluid">
                 <div className="col-md-6">
                     <Table timings={timingsToday}
-                           caption={`Today - ${this.formatToDateFromTimestamp(today)}'s prayer timings`}/>
+                           caption={`Today - ${this.formatToDateFromTimestamp(today)}'s prayer timings`} extra={this.formatToDateFromTimestamp(today)}/>
                 </div>
                 
                 <div className="col-md-6">
                     <Table timings={timingsTomorrow}
-                           caption={`Tomorrow - ${this.formatToDateFromTimestamp(tomorrow)}'s prayer timings`}/>
+                           caption={`Tomorrow - ${this.formatToDateFromTimestamp(tomorrow)}'s prayer timings`} extra={this.formatToDateFromTimestamp(tomorrow)}/>
                 </div>
             </div>
         );

@@ -19,7 +19,7 @@ class Table extends Component {
                     </tr>
                     {
                         Object.keys(this.props.timings).map((key, index) => {
-                            return <tr key = {key} className = {index % 2 == 0 ? 'success' : 'info'}>
+                            return <tr key = {key} className = {index % 2 == 0 ? 'warning' : 'success'}>
                                 <td>{key}</td>
                                 <td>{this.timeFormatter(timings[key])}</td>
                             </tr>;

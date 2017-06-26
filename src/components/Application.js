@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import moment from "moment-timezone";
 import Header from "./Header";
 import Result from "./Result";
-import Footer from './Footer';
-import axios from 'axios';
+import Footer from "./Footer";
+import axios from "axios";
 
 class Application extends Component {
     constructor () {
@@ -26,11 +26,11 @@ class Application extends Component {
         };
         this.getUserLatitudeAndLongitude();
     }
-    
-    getTimezonesList () {
-        return moment.tz.names();
+
+    urlBuilder(time, latitude, longitude, timezone){
+        return `http://api.aladhan.com/timings/${time}?latitude=${latitude}&longitude=${longitude}&timezonestring=${timezone}&method=2`
     }
-    
+
     updatePosition (position) {
         this.setState({
             latitude: position.coords.latitude,
@@ -38,22 +38,23 @@ class Application extends Component {
         });
         // position found
         // get today's timings
-        axios.get(`http://api.aladhan.com/timings/${this.state.today}?latitude=${this.state.latitude}&longitude=${this.state.longitude}&timezonestring=${this.state.user_timezone}&method=2`)
-            .then((response) => {
-                this.updateTimingState('today', response);
-            }).catch((error) => {
-            
+        axios.get(this.urlBuilder(this.state.today, this.state.latitude, this.state.longitude, this.state.user_timezone))
+             .then((response) => {
+                 this.updateTimingState('today', response);
+             }).catch((error) => {
+
         });
         // get tomorrow's timings
-        axios.get(`http://api.aladhan.com/timings/${this.state.tomorrow}?latitude=${this.state.latitude}&longitude=${this.state.longitude}&timezonestring=${this.state.user_timezone}&method=2`)
-            .then((response) => {
-                this.updateTimingState('tomorrow', response);
-            }).catch((error) => {
-            
+        axios.get(this.urlBuilder(this.state.tomorrow, this.state.latitude, this.state.longitude, this.state.user_timezone))
+             .then((response) => {
+                 this.updateTimingState('tomorrow', response);
+             }).catch((error) => {
+
         });
     }
-    
+
     updateTimingState (when, timings) {
+        console.log(timings.data);
         switch ( when ) {
             case 'today':
                 this.setState({
@@ -67,26 +68,26 @@ class Application extends Component {
                 break;
         }
     }
-    
+
     getUserLatitudeAndLongitude () {
         navigator.geolocation.getCurrentPosition((position) => {
             this.updatePosition(position);
         });
     }
-    
+
     getUserTimeZone () {
         return moment.tz.guess();
     }
-    
+
     render () {
         return (
-            <div className="container-fluid">
-                <Header user_timezone={this.state.user_timezone}/>
-                <Result tomorrow={this.state.tomorrow}
-                        timingsTomorrow={this.state.timingsTomorrow}
-                        timingsToday={this.state.timingsToday}
-                        today={this.state.today}/>
-                <Footer user_timezone={this.state.user_timezone}/>
+            <div className = "container-fluid">
+                <Header user_timezone = {this.state.user_timezone} />
+                <Result tomorrow = {this.state.tomorrow}
+                        timingsTomorrow = {this.state.timingsTomorrow}
+                        timingsToday = {this.state.timingsToday}
+                        today = {this.state.today} />
+                <Footer user_timezone = {this.state.user_timezone} />
             </div>
         );
     }

@@ -31,7 +31,7 @@ class Table extends Component {
         } else {
             return (
                 <div className = "panel panel-primary">
-                    <div className = "panel-body">Loading <span className='text-primary'>{this.props.extra}</span> prayer times</div>
+                    <div className = "panel-body">Loading <span className='text-primary'>{this.props.extra}</span>'s prayer times</div>
                 </div>
             );
         }

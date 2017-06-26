@@ -8,9 +8,7 @@ class Footer extends Component {
     render () {
         return (
             <div className="container-fluid">
-                <h5 className="text-center text-success">
-                    Timezone => {this.props.user_timezone} / API support: <a href="https://aladhan.com" target="_blank">Aladhan.com</a>
-                </h5>
+                <h5 className="text-center">Data by: <a href="https://aladhan.com" target="_blank">Aladhan.com</a> for <span className='text-info'>{this.props.user_timezone}</span></h5>
             </div>
         );
     }

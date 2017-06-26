@@ -54,7 +54,6 @@ class Application extends Component {
     }
 
     updateTimingState (when, timings) {
-        console.log(timings.data);
         switch ( when ) {
             case 'today':
                 this.setState({
